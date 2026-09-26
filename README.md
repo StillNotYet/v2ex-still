@@ -4,6 +4,22 @@
 
 这是从个人自用样式整理出的首个公开版本。纯 CSS，不需要浏览器扩展，也不包含 JavaScript、外部字体或图片资源。非 V2EX 官方项目，与 Apple 无关联。
 
+## 效果预览
+
+以下为 macOS Safari 的真实页面截图，已裁去账户侧栏和浏览器标签。
+
+### 浅色首页
+
+![浅色首页](screenshots/light.png)
+
+### 深色首页
+
+![深色首页](screenshots/dark.png)
+
+### 深色回复区
+
+![深色回复区](screenshots/replies.png)
+
 ## 安装
 
 1. 登录 V2EX，打开[设置](https://www.v2ex.com/settings)。
