@@ -1,10 +1,11 @@
-/* V2EX Still v1.0.0 | MIT | https://github.com/StillNotYet/v2ex-still */
+/* V2EX Still v1.0.1 | MIT | https://github.com/StillNotYet/v2ex-still */
 
 :root {
   --s-bg:#f5f5f7;
   --s-card:#fff;
   --s-text:#1d1d1f;
   --s-muted:#60646c;
+  --s-visited:#727680;
   --s-line:rgba(32,38,48,.1);
   --s-hover:#f8f9fb;
   --s-link:#425c82;
@@ -18,6 +19,7 @@ body:has(#Wrapper.Night) {
   --s-card:#222328;
   --s-text:#e5e6ea;
   --s-muted:#adb1bb;
+  --s-visited:#979ca7;
   --s-line:rgba(255,255,255,.1);
   --s-hover:#282a30;
   --s-link:#a4b9dc;
@@ -186,6 +188,10 @@ a.dark:link,a.dark:visited {
   font-weight:500;
 }
 
+.item_title a:visited {
+  color:var(--s-visited)!important;
+}
+
 .item_title a:hover {
   color:var(--s-link)!important;
 }
@@ -297,6 +303,16 @@ h1 {
 .topic_content img,.reply_content img {
   max-width:100%;
   height:auto;
+}
+
+/* Dim content images only; preserve avatars and restore linked images on focus. */
+#Wrapper.Night :is(.topic_content,.reply_content) img:not(.avatar) {
+  filter:brightness(.82);
+}
+
+#Wrapper.Night :is(.topic_content,.reply_content) img:not(.avatar):hover,
+#Wrapper.Night :is(.topic_content,.reply_content) a:focus-visible img:not(.avatar) {
+  filter:brightness(1);
 }
 
 .topic_content blockquote,.reply_content blockquote {

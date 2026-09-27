@@ -27,7 +27,7 @@
 3. 清空原有内容，粘贴下面这一行，保存后刷新页面：
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/StillNotYet/v2ex-still@v1.0.0/v2ex-still.min.css");
+@import url("https://cdn.jsdelivr.net/gh/StillNotYet/v2ex-still@v1.0.1/v2ex-still.min.css");
 ```
 
 建议使用上面的固定版本，不会随主分支更新而自动改变。升级时自行更换版本号。`@import` 必须放在自定义 CSS 最前面；不建议与其他整套主题叠加。
@@ -35,6 +35,12 @@
 CDN 加载不畅时，可以打开仓库内的 [v2ex-still.min.css](v2ex-still.min.css)，复制完整内容直接粘贴到 V2EX 自定义 CSS 中。本版本文件小于 8 KB；不要直接粘贴排版后的源码文件，可能超过 V2EX 的长度限制。
 
 关闭「使用自定义 CSS」即可停用；恢复备份内容即可回到之前的主题。
+
+## v1.0.1 更新
+
+- 恢复首页和节点列表的已读标题颜色区分。
+- 夜间正文、回复图片亮度降至 82%，悬停恢复；图片链接获得键盘焦点时也会恢复。不影响头像和浅色模式。
+- 图片降亮对所有正文图片生效，纯 CSS 不识别图片是否白底。
 
 ## 调整了什么
 
@@ -65,3 +71,7 @@ CSS 使用 `:has()`、CSS 变量和 `backdrop-filter` 等现代浏览器特性�
 ## License
 
 [MIT](LICENSE) © StillNotYet
+
+## 构建
+
+修改 `v2ex-still.css` 后运行 `python3 build.py`，生成压缩文件并检查 V2EX 的 8K 长度限制。压缩版会缩短内部 CSS 变量名。
