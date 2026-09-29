@@ -10,7 +10,7 @@ css = re.sub(r"\s+", " ", css)
 css = re.sub(r"\s*([{};,>])\s*", r"\1", css)
 css = re.sub(r":\s+", ":", css).replace(";}", "}").strip()
 for index, name in enumerate(sorted(set(re.findall(r"--s-[a-z]+", css)))):
-    css = css.replace(name, "--s" + chr(97 + index))
+    css = css.replace(name, "--" + chr(65 + index))
 assert len(css.encode()) < 8000, "CSS exceeds the pasteable size limit"
 (root / "v2ex-still.min.css").write_text(css + "\n")
 print(f"Built {len(css.encode())} bytes")

@@ -1,6 +1,9 @@
-/* V2EX Still v1.0.1 | MIT | https://github.com/StillNotYet/v2ex-still */
+/* V2EX Still v1.0.2 | MIT | https://github.com/StillNotYet/v2ex-still */
 
 :root {
+  color-scheme:light;
+  --s-top:rgba(250,250,252,.94);
+  --s-logo:0;
   --s-bg:#f5f5f7;
   --s-card:#fff;
   --s-text:#1d1d1f;
@@ -13,7 +16,10 @@
   --s-control:rgba(30,35,45,.22);
 }
 
-body:has(#Wrapper.Night) {
+@media(prefers-color-scheme:dark) {
+:root {
+  --s-top:rgba(30,31,36,.94);
+  --s-logo:1;
   color-scheme:dark;
   --s-bg:#191a1e;
   --s-card:#222328;
@@ -25,6 +31,7 @@ body:has(#Wrapper.Night) {
   --s-link:#a4b9dc;
   --s-soft:#30343f;
   --s-control:rgba(235,238,245,.25);
+}
 }
 
 body,input,textarea,select,button {
@@ -38,12 +45,13 @@ html {
 
 html,body,#Wrapper {
   background:var(--s-bg)!important;
-  background-image:none!important;
   color:var(--s-text);
 }
 
 #Wrapper,#Top,#Bottom {
   --box-background-color:var(--s-card);
+  --color-pro-badge:var(--s-soft);
+  --color-pro-badge-text:var(--s-text);
   --box-background-alt-color:var(--s-hover);
   --box-foreground-color:var(--s-text);
   --color-foreground:var(--s-text);
@@ -58,7 +66,7 @@ html,body,#Wrapper {
   padding-top:8px!important;
 }
 
-#Wrapper>.content,#Top>.content,#Bottom>.content {
+:is(#Wrapper,#Top,#Bottom)>.content {
   box-sizing:border-box;
   padding:0 24px;
   max-width:1180px!important;
@@ -71,7 +79,7 @@ html,body,#Wrapper {
   height:58px!important;
   display:flex;
   align-items:center;
-  background:rgba(250,250,252,.94)!important;
+  background:var(--s-top)!important;
   border:0!important;
   border-bottom:1px solid var(--s-line)!important;
   box-shadow:none!important;
@@ -79,8 +87,12 @@ html,body,#Wrapper {
   -webkit-backdrop-filter:blur(16px);
 }
 
-body:has(#Wrapper.Night) #Top {
-  background:rgba(30,31,36,.94)!important;
+#Logo,#LogoMobile {
+  background-image:url(https://www.v2ex.com/static/img/v2ex@2x.png)!important;
+}
+
+#Logo,#LogoMobile,#Bottom img,#search-container:before {
+  filter:brightness(0) invert(var(--s-logo))!important;
 }
 
 #Top>.content {
@@ -128,6 +140,7 @@ body:has(#Wrapper.Night) #Top {
   border:1px solid var(--s-line)!important;
   border-radius:16px!important;
   overflow:hidden;
+  box-shadow:none!important;
 }
 
 .cell,.inner,.header {
@@ -153,7 +166,7 @@ body:has(#Wrapper.Night) #Top {
   border-bottom:0!important;
 }
 
-#Rightbar .cell,#Rightbar .inner {
+#Rightbar :is(.cell,.inner) {
   padding:15px 17px!important;
 }
 
@@ -161,7 +174,7 @@ body:has(#Wrapper.Night) #Top {
   background:var(--s-hover)!important;
 }
 
-a:link,a:visited {
+a:any-link {
   color:var(--s-link);
 }
 
@@ -169,7 +182,7 @@ a:hover {
   color:var(--s-text);
 }
 
-a.dark:link,a.dark:visited {
+a.dark:any-link {
   color:var(--s-text)!important;
 }
 
@@ -183,7 +196,7 @@ a.dark:link,a.dark:visited {
   letter-spacing:normal;
 }
 
-.item_title a:link,.item_title a:visited {
+.item_title a:any-link {
   color:var(--s-text)!important;
   font-weight:500;
 }
@@ -209,7 +222,7 @@ a.dark:link,a.dark:visited {
   font-weight:500;
 }
 
-.cell .ago,.cell .small,.header .small {
+.cell .ago,:is(.cell,.header) .small {
   font-size:13px!important;
 }
 
@@ -217,7 +230,7 @@ img.avatar {
   border-radius:9px!important;
 }
 
-a.count_livid:link,a.count_livid:visited,a.count_orange:link,a.count_orange:visited,.no {
+a:is(.count_livid,.count_orange):any-link,.no {
   background:var(--s-soft)!important;
   color:var(--s-link)!important;
   border-radius:7px!important;
@@ -227,7 +240,7 @@ a.count_livid:link,a.count_livid:visited,a.count_orange:link,a.count_orange:visi
   line-height:1.4;
 }
 
-a.node:link,a.node:visited {
+a.node:any-link {
   background:var(--s-soft)!important;
   color:var(--s-muted)!important;
   border-radius:5px;
@@ -287,7 +300,7 @@ h1 {
   box-shadow:none!important;
 }
 
-.topic_content pre,.reply_content pre {
+:is(.topic_content,.reply_content) pre {
   background:var(--s-hover)!important;
   border:1px solid var(--s-line)!important;
   border-radius:10px;
@@ -296,26 +309,27 @@ h1 {
   overflow:auto;
 }
 
-.topic_content code,.reply_content code {
+:is(.topic_content,.reply_content) code {
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 
-.topic_content img,.reply_content img {
+:is(.topic_content,.reply_content) img {
   max-width:100%;
   height:auto;
 }
 
-/* Dim content images only; preserve avatars and restore linked images on focus. */
-#Wrapper.Night :is(.topic_content,.reply_content) img:not(.avatar) {
+/* The OS controls image dimming as well as the palette. */
+@media(prefers-color-scheme:dark) {
+:is(.topic_content,.reply_content) img:not(.avatar) {
   filter:brightness(.82);
 }
 
-#Wrapper.Night :is(.topic_content,.reply_content) img:not(.avatar):hover,
-#Wrapper.Night :is(.topic_content,.reply_content) a:focus-visible img:not(.avatar) {
+:is(.topic_content,.reply_content) :is(img:hover,a:focus-visible img):not(.avatar) {
   filter:brightness(1);
 }
+}
 
-.topic_content blockquote,.reply_content blockquote {
+:is(.topic_content,.reply_content) blockquote {
   color:var(--s-muted);
   border-left:3px solid var(--s-link);
   padding:8px 16px;
@@ -334,12 +348,13 @@ h1 {
   padding:12px 20px!important;
 }
 
-.pro-unit-title,.pro-unit-footer {
+.pro-unit-title,.pro-unit-footer,.message,a.balance_area {
+  text-shadow:none!important;
   background:var(--s-hover)!important;
   color:var(--s-muted)!important;
 }
 
-.pro-unit-title a,.pro-unit-footer a {
+:is(.pro-unit-title,.pro-unit-footer) a {
   color:var(--s-link)!important;
 }
 
@@ -352,7 +367,7 @@ h1 {
   transform:none!important;
 }
 
-#Wrapper input[type="text"],#Wrapper input[type="search"],#Wrapper textarea,#Wrapper select {
+#Wrapper :is(input[type="text"],input[type="search"],textarea,select) {
   background:var(--s-card)!important;
   color:var(--s-text)!important;
   border:1px solid var(--s-control)!important;
@@ -364,12 +379,12 @@ input::placeholder,textarea::placeholder {
   opacity:1;
 }
 
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible {
+:is(a,button,input,textarea,select):focus-visible {
   outline:2px solid var(--s-link)!important;
   outline-offset:3px;
 }
 
-.node-header>.page-content-header,.node-header .node-breadcrumb,.node-header .chevron {
+.node-header :is(.page-content-header,.node-breadcrumb,.chevron) {
   color:var(--s-text)!important;
   background:var(--s-card)!important;
   text-shadow:none!important;
@@ -411,7 +426,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .cell,.inner,.header {
     padding:14px 16px!important;
   }
-  #Wrapper>.content,#Top>.content,#Bottom>.content {
+  :is(#Wrapper,#Top,#Bottom)>.content {
     padding:0 12px;
   }
 }
@@ -441,6 +456,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 
 .subtle {
+  background:var(--s-hover)!important;
+  color:var(--s-text);
   padding:16px 20px!important;
   border-left:0!important;
 }
@@ -454,6 +471,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   border-radius:8px!important;
 }
 
-.box {
-  box-shadow:none!important;
-}
+
+/* System mode owns the palette; hide the unrelated account toggle. */
+a[href^="/settings/night/toggle"] {display:none!important}
