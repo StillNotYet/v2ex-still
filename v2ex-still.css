@@ -1,4 +1,4 @@
-/* V2EX Still v1.0.2 | MIT | https://github.com/StillNotYet/v2ex-still */
+/* V2EX Still v1.0.3 | MIT | https://github.com/StillNotYet/v2ex-still */
 
 :root {
   color-scheme:light;
@@ -16,8 +16,7 @@
   --s-control:rgba(30,35,45,.22);
 }
 
-@media(prefers-color-scheme:dark) {
-:root {
+:root:has(#Wrapper.Night) {
   --s-top:rgba(30,31,36,.94);
   --s-logo:1;
   color-scheme:dark;
@@ -31,7 +30,6 @@
   --s-link:#a4b9dc;
   --s-soft:#30343f;
   --s-control:rgba(235,238,245,.25);
-}
 }
 
 body,input,textarea,select,button {
@@ -53,6 +51,7 @@ html,body,#Wrapper {
   --color-pro-badge:var(--s-soft);
   --color-pro-badge-text:var(--s-text);
   --box-background-alt-color:var(--s-hover);
+  --box-background-hover-color:var(--s-hover);
   --box-foreground-color:var(--s-text);
   --color-foreground:var(--s-text);
   --color-gray:var(--s-muted);
@@ -85,10 +84,6 @@ html,body,#Wrapper {
   box-shadow:none!important;
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
-}
-
-#Logo,#LogoMobile {
-  background-image:url(https://www.v2ex.com/static/img/v2ex@2x.png)!important;
 }
 
 #Logo,#LogoMobile,#Bottom img,#search-container:before {
@@ -254,7 +249,11 @@ a.node:any-link {
   border-bottom:1px solid var(--s-line);
 }
 
-a.tab,a.tab_current {
+a.tab,a.tab:hover {
+  background:var(--s-hover)!important;
+}
+
+a.tab_current {
   display:inline-block;
   padding:6px 9px!important;
   border-radius:8px!important;
@@ -318,15 +317,13 @@ h1 {
   height:auto;
 }
 
-/* The OS controls image dimming as well as the palette. */
-@media(prefers-color-scheme:dark) {
-:is(.topic_content,.reply_content) img:not(.avatar) {
+/* Match the site night-mode switch. */
+.Night :is(.topic_content,.reply_content) img:not(.avatar) {
   filter:brightness(.82);
 }
 
-:is(.topic_content,.reply_content) :is(img:hover,a:focus-visible img):not(.avatar) {
+.Night :is(.topic_content,.reply_content) :is(img:hover,a:focus-visible img):not(.avatar) {
   filter:brightness(1);
-}
 }
 
 :is(.topic_content,.reply_content) blockquote {
@@ -471,6 +468,4 @@ input::placeholder,textarea::placeholder {
   border-radius:8px!important;
 }
 
-
-/* System mode owns the palette; hide the unrelated account toggle. */
-a[href^="/settings/night/toggle"] {display:none!important}
+.light-toggle {filter:invert(calc(1 - var(--s-logo)))!important}
