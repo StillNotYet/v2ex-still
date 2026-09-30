@@ -94,7 +94,7 @@ html,body,#Wrapper {
   width:100%;
 }
 
-#Top a {
+#Top a,.select2-selection__rendered {
   color:var(--s-text)!important;
 }
 
@@ -149,7 +149,7 @@ html,body,#Wrapper {
   color:var(--s-text);
 }
 
-.cell {
+.cell,.subtle {
   padding:16px 20px!important;
 }
 
@@ -165,7 +165,7 @@ html,body,#Wrapper {
   padding:15px 17px!important;
 }
 
-#Main .cell.item:hover,#TopicsNode>.cell:hover {
+#Main .cell.item:hover,#TopicsNode>.cell:hover,a.tab:hover {
   background:var(--s-hover)!important;
 }
 
@@ -200,11 +200,11 @@ a.dark:any-link {
   color:var(--s-visited)!important;
 }
 
-.item_title a:hover {
+.item_title a:hover,:is(.pro-unit-title,.pro-unit-footer) a {
   color:var(--s-link)!important;
 }
 
-.topic_info,.topic_info a,.topic_info span {
+.topic_info,.topic_info :is(a,span) {
   font-size:13px!important;
   color:var(--s-muted)!important;
 }
@@ -261,9 +261,6 @@ a.tab {
   color:var(--s-muted)!important;
 }
 
-a.tab:hover {
-  background:var(--s-hover)!important;
-}
 
 a.tab_current {
   background:var(--s-soft)!important;
@@ -352,9 +349,6 @@ h1 {
   color:var(--s-muted)!important;
 }
 
-:is(.pro-unit-title,.pro-unit-footer) a {
-  color:var(--s-link)!important;
-}
 
 .normal.button,.super.button {
   background:var(--s-soft)!important;
@@ -445,9 +439,6 @@ input::placeholder,textarea::placeholder {
   border-color:var(--s-control)!important;
 }
 
-.select2-selection__rendered {
-  color:var(--s-text)!important;
-}
 
 .select2-results__option[aria-selected=true] {
   background:var(--s-soft)!important;
@@ -456,7 +447,6 @@ input::placeholder,textarea::placeholder {
 .subtle {
   background:var(--s-hover)!important;
   color:var(--s-text);
-  padding:16px 20px!important;
   border-left:0!important;
 }
 
@@ -469,4 +459,12 @@ input::placeholder,textarea::placeholder {
   border-radius:8px!important;
 }
 
-.light-toggle {filter:invert(calc(1 - var(--s-logo)))!important}
+/* Keep the site's click action; render the knob and track with distinct colors. */
+.light-toggle {
+  width:32px;
+  height:18px;
+  border-radius:9px;
+  background:radial-gradient(circle at calc(9px + 14px*var(--s-logo)) 9px,#fff 7px,transparent 8px) #8a8f99;
+  filter:none!important;
+}
+.light-toggle img {opacity:0}

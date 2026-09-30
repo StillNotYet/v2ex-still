@@ -27,7 +27,7 @@
 3. 清空原有内容，粘贴下面这一行，保存后刷新页面：
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/StillNotYet/v2ex-still@v1.0.3/v2ex-still.fixed.min.css");
+@import url("https://cdn.jsdelivr.net/gh/StillNotYet/v2ex-still@v1.0.3/v2ex-still.theme.min.css");
 ```
 
 建议使用上面的固定版本，不会随主分支更新而自动改变。升级时自行更换版本号。`@import` 必须放在自定义 CSS 最前面；不建议与其他整套主题叠加。
@@ -41,8 +41,9 @@ CDN 加载不畅时，可以打开仓库内的 [v2ex-still.min.css](v2ex-still.m
 - 恢复 V2EX 原有深浅色开关，移除跟随系统的自动切换。
 - 修复导航标签的间距、圆角和常驻底色，恢复 v1.0.1 的默认外观。
 - 保留已读标题区分和夜间图片降亮。
+- 修复浅色开关反色后滑块与底色混在一起的问题，改为清晰的灰色轨道与白色滑块。
 
-v1.0.2 已撤回。此前 v1.0.3 的导航样式有问题，已覆盖修正。为避开旧 CDN 文件的永久缓存，请复制上面的完整安装链接：版本号仍为 `v1.0.3`，文件名改为 `v2ex-still.fixed.min.css`。直接粘贴 CSS 的用户重新复制仓库中的压缩文件即可。
+v1.0.2 已撤回。此前 v1.0.3 的导航样式有问题，已覆盖修正。为避开旧 CDN 文件的永久缓存，请复制上面的完整安装链接：版本号仍为 `v1.0.3`，文件名改为 `v2ex-still.theme.min.css`。直接粘贴 CSS 的用户重新复制仓库中的压缩文件即可。
 
 ## v1.0.1 更新
 
