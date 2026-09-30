@@ -249,11 +249,7 @@ a.node:any-link {
   border-bottom:1px solid var(--s-line);
 }
 
-a.tab,a.tab:hover {
-  background:var(--s-hover)!important;
-}
-
-a.tab_current {
+a.tab,a.tab_current {
   display:inline-block;
   padding:6px 9px!important;
   border-radius:8px!important;
@@ -261,7 +257,12 @@ a.tab_current {
 }
 
 a.tab {
+  background:transparent!important;
   color:var(--s-muted)!important;
+}
+
+a.tab:hover {
+  background:var(--s-hover)!important;
 }
 
 a.tab_current {
