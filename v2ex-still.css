@@ -1,4 +1,4 @@
-/* V2EX Still v1.0.3 | MIT | https://github.com/StillNotYet/v2ex-still */
+/* V2EX Still v1.0.4 | MIT | https://github.com/StillNotYet/v2ex-still */
 
 :root {
   color-scheme:light;
@@ -81,7 +81,6 @@ html,body,#Wrapper {
   background:var(--s-top)!important;
   border:0!important;
   border-bottom:1px solid var(--s-line)!important;
-  box-shadow:none!important;
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
 }
@@ -105,10 +104,9 @@ html,body,#Wrapper {
 }
 
 #Top #search {
-  background:transparent!important;
+  background:#0000!important;
   color:var(--s-text)!important;
   border:0!important;
-  box-shadow:none!important;
 }
 
 #search-container:focus-within {
@@ -135,29 +133,28 @@ html,body,#Wrapper {
   border:1px solid var(--s-line)!important;
   border-radius:16px!important;
   overflow:hidden;
+}
+
+#Top,#Top #search,.box,.cell,.inner,.header,.reply_content,.topic_buttons,.node-header .cell_ops,.normal.button,.super.button {
   box-shadow:none!important;
 }
 
-.cell,.inner,.header {
-  background:transparent!important;
+/* Let the native reply modes set row padding and separators. */
+:is(.cell,.inner,.header):not(:where(.reply-group-item,.reply-threads-d>[data-depth],.reply-lines-on>[data-reply-id])) {
+  background:#0000!important;
   border:0!important;
   border-bottom:1px solid var(--s-line)!important;
   border-radius:0!important;
   margin:0!important;
-  box-shadow:none!important;
   transform:none!important;
   color:var(--s-text);
+  padding:var(--s-narrow,var(--s-pad))!important;
 }
 
-.cell,.subtle {
-  padding:16px 20px!important;
-}
+.cell { --s-pad:16px 20px; }
+.inner,.header { --s-pad:18px 20px; }
 
-.inner,.header {
-  padding:18px 20px!important;
-}
-
-.cell:last-child,.inner:last-child {
+:is(.cell,.inner):last-child {
   border-bottom:0!important;
 }
 
@@ -245,7 +242,7 @@ a.node:any-link {
 
 #Tabs {
   padding:16px!important;
-  background:transparent!important;
+  background:#0000!important;
   border-bottom:1px solid var(--s-line);
 }
 
@@ -257,7 +254,7 @@ a.tab,a.tab_current {
 }
 
 a.tab {
-  background:transparent!important;
+  background:#0000!important;
   color:var(--s-muted)!important;
 }
 
@@ -292,9 +289,8 @@ h1 {
 .reply_content {
   padding:0!important;
   margin-top:10px!important;
-  background:transparent!important;
+  background:#0000!important;
   border:0!important;
-  box-shadow:none!important;
 }
 
 :is(.topic_content,.reply_content) pre {
@@ -339,7 +335,6 @@ h1 {
 .topic_buttons,.node-header .cell_ops {
   background:var(--s-hover)!important;
   border-top:1px solid var(--s-line)!important;
-  box-shadow:none!important;
   padding:12px 20px!important;
 }
 
@@ -355,11 +350,10 @@ h1 {
   color:var(--s-text)!important;
   border:1px solid var(--s-control)!important;
   border-radius:8px!important;
-  box-shadow:none!important;
   transform:none!important;
 }
 
-#Wrapper :is(input[type="text"],input[type="search"],textarea,select) {
+#Wrapper :is(input[type=text],input[type=search],textarea,select) {
   background:var(--s-card)!important;
   color:var(--s-text)!important;
   border:1px solid var(--s-control)!important;
@@ -406,6 +400,7 @@ input::placeholder,textarea::placeholder {
 }
 
 @media(max-width:850px) {
+  :root { --s-narrow:14px 16px; }
   #Main {
     margin-right:0!important;
   }
@@ -414,9 +409,6 @@ input::placeholder,textarea::placeholder {
   }
   #Wrapper {
     padding-top:12px!important;
-  }
-  .cell,.inner,.header {
-    padding:14px 16px!important;
   }
   :is(#Wrapper,#Top,#Bottom)>.content {
     padding:0 12px;
@@ -427,7 +419,7 @@ input::placeholder,textarea::placeholder {
   -webkit-appearance:none!important;
   appearance:none!important;
   padding:6px 28px 6px 9px!important;
-  background-image:linear-gradient(45deg,transparent 50%,var(--s-muted) 50%),linear-gradient(135deg,var(--s-muted) 50%,transparent 50%)!important;
+  background-image:linear-gradient(45deg,#0000 50%,var(--s-muted) 50%),linear-gradient(135deg,var(--s-muted) 50%,#0000 50%)!important;
   background-position:calc(100% - 13px) 50%,calc(100% - 9px) 50%!important;
   background-size:4px 4px!important;
   background-repeat:no-repeat!important;
@@ -445,6 +437,7 @@ input::placeholder,textarea::placeholder {
 }
 
 .subtle {
+  padding:16px 20px!important;
   background:var(--s-hover)!important;
   color:var(--s-text);
   border-left:0!important;
@@ -464,7 +457,7 @@ input::placeholder,textarea::placeholder {
   width:32px;
   height:18px;
   border-radius:9px;
-  background:radial-gradient(circle at calc(9px + 14px*var(--s-logo)) 9px,#fff 7px,transparent 8px) #8a8f99;
+  background:radial-gradient(circle at calc(9px + 14px*var(--s-logo)) 9px,#fff 7px,#0000 8px) #8a8f99;
   filter:none!important;
 }
 .light-toggle img {opacity:0}
